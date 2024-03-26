@@ -18,12 +18,12 @@ class CategoryDetailsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(category.iconPath), // Display category icon
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               'Details for ${category.name}',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               'You can display more details about ${category.name} here.',
               textAlign: TextAlign.center,
