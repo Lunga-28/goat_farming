@@ -14,15 +14,9 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomePage(), // Start with the welcome page
-      routes: {
-        '/login': (context) => LoginPage(), // Define route for login page
-        '/register': (context) =>
-            RegisterPage(), // Define route for register page
-        '/home': (context) => Home(), // Define route for home/dashboard page
-      },
+      home: LoginPage(),
     );
   }
 }
