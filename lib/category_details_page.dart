@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'models/list.dart';
+import 'goats_page.dart';
+import 'weather.dart ';
 
 class CategoryDetailsPage extends StatelessWidget {
   final CategoryM category;
@@ -9,28 +11,33 @@ class CategoryDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(category.name),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(category.iconPath), // Display category icon
-            const SizedBox(height: 20),
-            Text(
-              'Details for ${category.name}',
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'You can display more details about ${category.name} here.',
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
-    );
+    // Navigate to respective pages based on the category index
+    switch (category.name) {
+      case 'Goats':
+        // Navigate to GoatPage
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Goats(),
+          ),
+        );
+        break;
+      case 'Stuff':
+        // Navigate to StuffPage
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WeatherPage(),
+          ),
+        );
+        break;
+      // Add more cases for additional categories as needed
+      default:
+        // Handle cases for other categories or do nothing
+        break;
+    }
+
+    // Returning an empty container since the navigation is done
+    return Container();
   }
 }

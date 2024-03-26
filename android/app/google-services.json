@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "706032254448",
+    "project_id": "goat-farm-manager-26d40",
+    "storage_bucket": "goat-farm-manager-26d40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706032254448:android:35fd822c80eb7bb9707135",
+        "android_client_info": {
+          "package_name": "com.example.goat_farm_manager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBJGMGlqW4AxNzniOXsJdE19kafFYWz1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

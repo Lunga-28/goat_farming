@@ -4,21 +4,20 @@ import 'service/weather_service.dart';
 import 'package:lottie/lottie.dart';
 
 class WeatherPage extends StatefulWidget {
-  const WeatherPage({super.key});
+  const WeatherPage({Key? key}) : super(key: key);
 
   @override
   State<WeatherPage> createState() => _WeatherPageState();
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-  // API key from OpenWeatherMap
-  final _weatherService =
-      WeatherService(apiKey: '5e8167db3cfec0c10a7a7a1fe0e5c1a6');
+  final _weatherService = WeatherService(
+      apiKey:
+          'd07afd2cfc619b71bb18fb5b8a2dd16a'); // API key from OpenWeatherMap
   Weather? _weather;
-  // fetch weather data from the API
-  _fetchWeather() async {
-    String cityName = await _weatherService.getLocation().toString();
 
+  // Fetch weather data from the API
+  _fetchWeather(String cityName) async {
     try {
       final weather = await _weatherService.getWeather(cityName);
       setState(() {
@@ -29,10 +28,10 @@ class _WeatherPageState extends State<WeatherPage> {
     }
   }
 
-  //display the weather animations based on data
-  String weatheranimation(String? weatherdescription) {
-    if (weatherdescription == null) return 'assets/images/sunny.json';
-    switch (weatherdescription.toLowerCase()) {
+  // Display the weather animations based on data
+  String weatherAnimation(String? weatherDescription) {
+    if (weatherDescription == null) return 'assets/images/sunny.json';
+    switch (weatherDescription.toLowerCase()) {
       case 'clouds':
       case 'mist':
       case 'fog':
@@ -56,20 +55,85 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   void initState() {
     super.initState();
-    _fetchWeather();
+    _fetchWeather("Your default city"); // Provide a default city here
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text(_weather?.cityName ?? "loading..."),
-          Lottie.asset(weatheranimation(_weather?.weatherdescription)),
-          //now for temperature
-          Text('${_weather?.temperature.toString()}' 'C'),
-        ]),
+      appBar: AppBar(
+        title: const Text('Weather'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              // Implement search functionality here
+              // You can show a search dialog or navigate to a search page
+            },
+          ),
+        ],
       ),
+      body: _weather != null
+          ? SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 20),
+                  Text(
+                    _weather!.cityName,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Lottie.asset(
+                    weatherAnimation(_weather!.weatherdescription),
+                    height: 200,
+                    width: 200,
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    _weather!.weatherdescription ?? "No data",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    '${_weather!.temperature.toString()}°C',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    'Humidity: ${_weather!.humidity.toString()}%',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Wind: ${_weather!.windSpeed.toString()} m/s',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          : Center(child: CircularProgressIndicator()),
     );
   }
 }

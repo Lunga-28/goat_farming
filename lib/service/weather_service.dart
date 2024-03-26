@@ -22,19 +22,23 @@ class WeatherService {
     }
   }
 
-// get user location
-  Future<Weather> getLocation() async {
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      await Geolocator.requestPermission();
+  // Get user location and fetch weather
+  Future<Weather> getLocationWeather() async {
+    try {
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        await Geolocator.requestPermission();
+      }
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+
+      String? city = placemarks[0].locality;
+      return getWeather(city ?? "");
+    } catch (e) {
+      throw Exception('Failed to get location and weather data: $e');
     }
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-
-    String? city = placemarks[0].locality;
-    return getWeather(city ?? "");
   }
 }
