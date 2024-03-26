@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'models/weather_model.dart';
 import 'service/weather_service.dart';
+import 'package:lottie/lottie.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
@@ -41,6 +42,7 @@ class _WeatherPageState extends State<WeatherPage> {
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(_weather?.cityName ?? "loading..."),
+          Lottie.asset('assets/cloudy.json')
           //now for temperature
           Text('${_weather?.temperature.toString()}' 'C'),
         ]),
