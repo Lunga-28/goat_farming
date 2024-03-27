@@ -5,6 +5,8 @@ import 'package:goat_farm_manager/components/my_button.dart';
 class RegisterPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   RegisterPage({super.key});
   void Register() {}
   @override
@@ -46,7 +48,12 @@ class RegisterPage extends StatelessWidget {
               controller: passwordController,
             ),
             const SizedBox(height: 25),
-
+            //Confirm Password textField
+            Myfield(
+              hintText: 'Password',
+              obscureText: true,
+              controller: passwordController,
+            ),
             // the Login button
             Mybutton(
               text: "Register",
@@ -59,12 +66,12 @@ class RegisterPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Don't have an account?",
+                  "Already have an account?",
                   style:
                       TextStyle(color: Theme.of(context).colorScheme.primary),
                 ),
                 Text(
-                  "Register",
+                  "Login",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Theme.of(context).colorScheme.primary,
