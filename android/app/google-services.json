@@ -12,7 +12,12 @@
           "package_name": "com.example.goat_farm_manager"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "706032254448-e14otf2ii0ehtigmi6i6na25vdaokbg0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBBJGMGlqW4AxNzniOXsJdE19kafFYWz1s"
@@ -20,7 +25,55 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706032254448-e14otf2ii0ehtigmi6i6na25vdaokbg0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "706032254448-pbv436og7dolpophto9423ck5v9fcmnr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.goatFarmManager"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706032254448:android:41deb5b61cdab8aa707135",
+        "android_client_info": {
+          "package_name": "com.goat_farm_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706032254448-e14otf2ii0ehtigmi6i6na25vdaokbg0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBJGMGlqW4AxNzniOXsJdE19kafFYWz1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706032254448-e14otf2ii0ehtigmi6i6na25vdaokbg0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "706032254448-pbv436og7dolpophto9423ck5v9fcmnr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.goatFarmManager"
+              }
+            }
+          ]
         }
       }
     }

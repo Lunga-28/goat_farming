@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '706032254448',
     projectId: 'goat-farm-manager-26d40',
     storageBucket: 'goat-farm-manager-26d40.appspot.com',
+    iosClientId: '706032254448-pbv436og7dolpophto9423ck5v9fcmnr.apps.googleusercontent.com',
     iosBundleId: 'com.example.goatFarmManager',
   );
 
@@ -76,6 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '706032254448',
     projectId: 'goat-farm-manager-26d40',
     storageBucket: 'goat-farm-manager-26d40.appspot.com',
+    iosClientId: '706032254448-uofje8bk85vndvtcmvu3ijgjkl404v5v.apps.googleusercontent.com',
     iosBundleId: 'com.example.goatFarmManager.RunnerTests',
   );
 }

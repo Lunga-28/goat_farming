@@ -5,7 +5,10 @@ import 'package:goat_farm_manager/components/my_button.dart';
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  LoginPage({super.key});
+
+  // takes us to registraion page
+  final void Function()? onTap;
+  LoginPage({super.key, required this.onTap});
   void login() {}
   @override
   Widget build(BuildContext context) {
@@ -64,9 +67,7 @@ class LoginPage extends StatelessWidget {
                       TextStyle(color: Theme.of(context).colorScheme.primary),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/register');
-                  },
+                  onTap: onTap,
                   child: Text(
                     "Register",
                     style: TextStyle(
