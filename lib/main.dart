@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'welcome_page.dart'; // Import your welcome page
-import 'login_page.dart'; // Import your login page
-import 'register_page.dart'; // Import your register page
-import 'home.dart';
+import 'package:firebase_core/firebase_core.dart'; // Import your light mode theme
+import 'package:goat_farm_manager/themes/light_mode.dart';
+import 'package:goat_farm_manager/auth/login_register.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,9 +12,10 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: LoginOrRegister(),
+      theme: lightmode, // Set the theme to light mode
     );
   }
 }

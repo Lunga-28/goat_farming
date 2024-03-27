@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:goat_farm_manager/components/_textfied.dart';
+import 'package:goat_farm_manager/components/my_button.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  LoginPage({super.key});
+  void login() {}
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.white,
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -15,13 +21,64 @@ class LoginPage extends StatelessWidget {
             Icon(
               Icons.message,
               size: 60,
-            )
-             SizedBox(height: 50),
-            Text('Welcome back!',
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            const SizedBox(height: 50),
+            Text(
+              'Lets create new account',
               style: TextStyle(
                 fontSize: 20,
-                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.primary,
               ),
+            ),
+            const SizedBox(height: 25),
+
+            //email textField
+            Myfield(
+              hintText: 'Email',
+              obscureText: false,
+              controller: emailController,
+            ),
+            const SizedBox(height: 25),
+
+            //Password textField
+            Myfield(
+              hintText: 'Password',
+              obscureText: true,
+              controller: passwordController,
+            ),
+            const SizedBox(height: 25),
+            //Confirm Password textField
+            Myfield(
+              hintText: 'Password',
+              obscureText: true,
+              controller: passwordController,
+            ),
+            const SizedBox(height: 25),
+            // the Login button
+            Mybutton(
+              text: "Login",
+              onTap: login,
+            ),
+
+            //register button and field
+            const SizedBox(height: 25),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Already have an account?",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
+                ),
+                Text(
+                  "Login",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
