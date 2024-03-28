@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:goat_farm_manager/auth/auth_services.dart';
 import 'models/list.dart';
 import 'category_details_page.dart';
+import 'components/my_drawer.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -40,6 +41,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.white30,
         centerTitle: true,
       ),
+      drawer: MyDrawer(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
