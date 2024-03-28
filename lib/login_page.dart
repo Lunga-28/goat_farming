@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goat_farm_manager/auth/auth_services.dart';
 import 'package:goat_farm_manager/components/_textfied.dart';
 import 'package:goat_farm_manager/components/my_button.dart';
 
@@ -9,7 +10,25 @@ class LoginPage extends StatelessWidget {
   // takes us to registraion page
   final void Function()? onTap;
   LoginPage({super.key, required this.onTap});
-  void login() {}
+  void login(BuildContext context) async {
+    final authService = AuthService();
+
+    // try to login
+    try {
+      await authService.signInWithEmailAndPassword(
+        emailController.text,
+        passwordController.text,
+      );
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(e.toString()),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +72,7 @@ class LoginPage extends StatelessWidget {
             // the Login button
             Mybutton(
               text: "Login",
-              onTap: login,
+              onTap: () => login(context),
             ),
 
             //register button and field

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goat_farm_manager/auth/auth_services.dart';
 import 'models/list.dart';
 import 'category_details_page.dart';
 
@@ -11,19 +12,30 @@ class Home extends StatelessWidget {
     categories = CategoryM.getCategories();
   }
 
+  void logout() {
+    final _auth = AuthService();
+    _auth.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     _getCategories();
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Goat Farming',
           style: TextStyle(
-            color: Colors.indigo,
+            color: Theme.of(context).colorScheme.primary,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: logout,
+            icon: const Icon(Icons.logout),
+          ),
+        ],
         elevation: 0.2,
         backgroundColor: Colors.white30,
         centerTitle: true,

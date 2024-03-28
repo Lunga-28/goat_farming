@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:goat_farm_manager/components/_textfied.dart';
 import 'package:goat_farm_manager/components/my_button.dart';
+import 'package:goat_farm_manager/auth/auth_services.dart';
 
 class RegisterPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -10,7 +11,35 @@ class RegisterPage extends StatelessWidget {
   // takes us to login page
   final void Function()? onTap;
   RegisterPage({super.key, required this.onTap});
-  void Register() {}
+  void Register(BuildContext context) async {
+    //register logic
+    // get auth services
+    final _auth = AuthService();
+    // try to register if password and confirm password are the same
+    if (passwordController.text == confirmPasswordController.text) {
+      try {
+        await _auth.registerWithEmailAndPassword(
+          emailController.text,
+          passwordController.text,
+        );
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(e.toString()),
+          ),
+        );
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Passwords do not match'),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,12 +83,12 @@ class RegisterPage extends StatelessWidget {
             Myfield(
               hintText: 'Confirm Password',
               obscureText: true,
-              controller: passwordController,
+              controller: confirmPasswordController,
             ),
             // the Login button
             Mybutton(
               text: "Register",
-              onTap: Register,
+              onTap: () => Register(context),
             ),
 
             //register button and field
