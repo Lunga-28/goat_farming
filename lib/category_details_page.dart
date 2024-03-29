@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'models/list.dart';
 import 'goats_page.dart';
-import 'weather.dart ';
+import 'weather.dart';
 
 class CategoryDetailsPage extends StatelessWidget {
   final CategoryM category;

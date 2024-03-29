@@ -31,12 +31,6 @@ class Home extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: logout,
-            icon: const Icon(Icons.logout),
-          ),
-        ],
         elevation: 0.2,
         backgroundColor: Colors.white30,
         centerTitle: true,
