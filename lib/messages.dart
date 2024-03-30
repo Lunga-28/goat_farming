@@ -5,6 +5,7 @@ import 'package:goat_farm_manager/auth/auth_services.dart';
 import 'package:goat_farm_manager/components/my_drawer.dart';
 import 'package:goat_farm_manager/components/user_tile.dart';
 import 'package:goat_farm_manager/service/chat/chat_service.dart';
+import 'chat_page.dart';
 
 class Messages extends StatelessWidget {
   Messages({super.key});
@@ -35,7 +36,7 @@ class Messages extends StatelessWidget {
           return const Text("loading");
       }
       return ListView(
-        children: snapshot.data!.map<Widget>((userData) => _buildUserListItem).toList(),
+        children: snapshot.data!.map<Widget>((userData) => _buildUserListItem(userData, context)).toList(),
       );
      },
      );
@@ -44,7 +45,9 @@ class Messages extends StatelessWidget {
     // display all current stuff excluding current user
     return UserTile(
       text: userData["email"], onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) =>ChatPage(),));
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>ChatPage(
+          rEmail: userData["email"],
+        ),));
       },);
   }
 }
