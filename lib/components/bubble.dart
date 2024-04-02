@@ -2,11 +2,25 @@ import 'package:flutter/material.dart';
 
 class ChatBubble
  extends StatelessWidget {
+  final String message;
+  final bool isCurrent;
+
   const ChatBubble
-  ({super.key});
+  ({super.key,
+  required this.isCurrent,
+  required this.message,});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      decoration: BoxDecoration(
+        color: isCurrent? Colors.green : Colors.grey.shade500,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      padding:const EdgeInsets.all(16),
+      margin:const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
+      child: Text(message,
+                style: TextStyle(color: Colors.white),),
+    );
   }
 }

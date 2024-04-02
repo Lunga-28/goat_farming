@@ -17,6 +17,9 @@ class Messages extends StatelessWidget {
     return  Scaffold(
       appBar: AppBar(
         title:const Text("Messages"),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
         ),
         drawer:const MyDrawer(),
         body: _builduserList(),

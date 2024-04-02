@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:goat_farm_manager/auth/auth_services.dart';
 import 'package:goat_farm_manager/components/_textfied.dart';
+import 'package:goat_farm_manager/components/bubble.dart';
 import 'package:goat_farm_manager/service/chat/chat_service.dart';
 
 class ChatPage extends StatelessWidget {
@@ -32,7 +33,11 @@ void sendMessage()async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(rEmail)),
+      appBar: AppBar(title: Text(rEmail),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
+        ),
       body: Column(children: [
         Expanded(child: _buildMessageList()),
         _buildUserInput(),
@@ -67,7 +72,13 @@ void sendMessage()async {
     var alignment = isCurrent ? Alignment.centerRight : Alignment.centerLeft;
     return Container(
       alignment: alignment,
-      child: Text(data['message']),
+      child: Column(
+        crossAxisAlignment: isCurrent ? CrossAxisAlignment.end: CrossAxisAlignment.start,
+        children: [
+          ChatBubble(isCurrent: isCurrent,
+          message: data["message"],)
+        ],
+      ),
     );
   }
 
