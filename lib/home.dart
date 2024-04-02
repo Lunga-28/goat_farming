@@ -3,14 +3,23 @@ import 'package:goat_farm_manager/auth/auth_services.dart';
 import 'models/list.dart';
 import 'category_details_page.dart';
 import 'components/my_drawer.dart';
+import 'messages.dart'; // Import the MessagesPage
+// Import the ProfilePage
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
 
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   List<CategoryM> categories = [];
 
   void _getCategories() {
-    categories = CategoryM.getCategories();
+    setState(() {
+      categories = CategoryM.getCategories();
+    });
   }
 
   void logout() {
@@ -18,9 +27,41 @@ class Home extends StatelessWidget {
     _auth.signOut();
   }
 
+  int _selectedIndex = 0;
+void _onItemTapped(int index) {
+  setState(() {
+    _selectedIndex = index;
+    switch (index) {
+      case 0:
+        // Navigate to Home page (already on Home page, do nothing)
+        break;
+      case 1:
+        // Navigate to Messages page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Messages()),
+        );
+        break;
+      case 2:
+        // Navigate to Profile page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Messages()),
+        );
+        break;
+    }
+  });
+}
+
+   
+  @override
+  void initState() {
+    super.initState();
+    _getCategories();
+  }
+
   @override
   Widget build(BuildContext context) {
-    _getCategories();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -112,27 +153,30 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.messenger),
-            label: 'Messages',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        selectedItemColor: Colors.indigo,
-        unselectedItemColor: Colors.grey,
-        showSelectedLabels: true,
-        showUnselectedLabels: false,
-        backgroundColor: Colors.white54,
-      ),
+bottomNavigationBar: BottomNavigationBar(
+  items: const <BottomNavigationBarItem>[
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      label: 'Home',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.messenger),
+      label: 'Messages',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.person),
+      label: 'Profile',
+    ),
+  ],
+  currentIndex: _selectedIndex,
+  selectedItemColor: Colors.indigo,
+  unselectedItemColor: Colors.grey,
+  showSelectedLabels: true,
+  showUnselectedLabels: false,
+  backgroundColor: Colors.white54,
+  onTap: _onItemTapped, // Ensure this is assigned correctly
+),
+
     );
   }
 }

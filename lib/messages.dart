@@ -1,4 +1,3 @@
-import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:goat_farm_manager/auth/auth_services.dart';
@@ -43,11 +42,17 @@ class Messages extends StatelessWidget {
   }
   Widget _buildUserListItem(Map<String, dynamic> userData, BuildContext context){
     // display all current stuff excluding current user
-    return UserTile(
+    if (userData["email"] != _authService.getCurrentUser()!.email){
+          return UserTile(
       text: userData["email"], onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (context) =>ChatPage(
           rEmail: userData["email"],
+          rID: userData["uid"],
         ),));
       },);
+    }
+    else{
+      return Container();
+    }
   }
 }
